@@ -42,5 +42,27 @@ jobs:
          --zip-file fileb://function.zip \
          --role arn:aws:iam::949263681218:role/service-role/saroj-apigateway1-role-lniyxd85 \
          --handler function-index.lambda_handler
+         
+      - name: deploying the react app to aws s3 bucket
+        run: |
+          aws s3api create-bucket --bucket saroj-react-bucket-script --region us-east-1 --profile lft-training
+        
+          aws s3api put-public-access-block \
+          --bucket saroj-react-bucket-script \
+          --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false" \
+          --profile lft-training
+
+       
+          aws s3api put-bucket-policy \
+          --bucket saroj-react-bucket-script \
+          --policy file://saroj-policy.json \
+          --profile lft-training
+
+          npm run build 
+
+          aws s3 sync build s3://saroj-react-bucket-script --profile lft-training
+
+          
+     
 
       
