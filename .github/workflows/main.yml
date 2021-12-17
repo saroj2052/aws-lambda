@@ -31,7 +31,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # TODO Change your AWS region here!
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: creating Zip file of fuction-index.py
         run: |
          zip function.zip function-index.py
