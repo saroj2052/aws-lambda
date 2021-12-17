@@ -1,0 +1,15 @@
+{
+  "Id": "Policy16396402159",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1639640205646",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::saroj-react-bucket",
+      "Principal": "*"
+    }
+  ]
+}
