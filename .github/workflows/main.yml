@@ -32,5 +32,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         # TODO Change your AWS region here!
           aws-region: us-east-2
+      - name: creating Zip file of fuction-index.py
+        run: |
+         zip function.zip function-index.py
+         
+      - name: Deploying lamda function to aws
+        run: |
+         aws lambda create-function --function-name saroj-deploy --runtime python3.9 \
+         --zip-file fileb://function.zip \
+         --role arn:aws:iam::949263681218:role/service-role/saroj-apigateway1-role-lniyxd85 \
+         --handler function-index.lambda_handler --profile lft-training
 
       
